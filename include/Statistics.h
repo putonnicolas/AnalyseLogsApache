@@ -45,6 +45,7 @@ public:
     // Contrat :
     //
     void MakeStats();
+
     // Mode d'emploi :
     //
     // Contrat :
