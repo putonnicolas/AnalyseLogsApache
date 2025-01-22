@@ -1,6 +1,11 @@
 {
   "files.associations": {
     "iostream": "cpp",
+<<<<<<< HEAD
     "map": "cpp"
+=======
+    "string": "cpp",
+    "unordered_map": "cpp"
+>>>>>>> 28c094bb72dbd9becda1a6140edccb77e6324ae4
   }
 }
