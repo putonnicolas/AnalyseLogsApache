@@ -10,6 +10,7 @@ using namespace std;
 
 // -------------------------------------------------------- Include personnel
 #include "../include/config.h"
+#include "../include/Parser.h"
 
 
 // -------------------------- Classe <Grapher> -----------------------------
@@ -18,7 +19,7 @@ class Grapher
 public:
     //----------------------------------------------------- Méthodes publiques
     void Fill(Parser &parser, Flags &flags);
-    void MakeGraph(Flags &flags);
+    void MakeGraph(Flags &flags) const;
 
     //-------------------------------------------- Constructeurs - destructeur
     Grapher();
