@@ -13,6 +13,8 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 #include <map>
+#include <../include/config.h>
+
 using namespace std;
 //------------------------------------------------------------- Constantes
 

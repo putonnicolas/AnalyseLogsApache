@@ -4,14 +4,22 @@ endif
 
 # -----------------------------
 
-analog: build/main.o build/Parser.o
-	g++ $(CXXFLAGS) -o analog build/main.o build/Parser.o
+analog: build/main.o build/Parser.o build/Statistics.o
+	g++ $(CXXFLAGS) -o analog build/main.o build/Parser.o build/Statistics.o
 
 build/main.o: src/main.cpp 
 	g++ $(CXXFLAGS) -c src/main.cpp -Iinclude -o build/main.o
 
 build/Parser.o: src/Parser.cpp 
 	g++ $(CXXFLAGS) -c src/Parser.cpp -Iinclude -o build/Parser.o
+
+build/Grapher.o: src/Grapher.cpp 
+	g++ $(CXXFLAGS) -c src/Grapher.cpp -Iinclude -o build/Grapher.o
+
+build/Statistics.o: src/Statistics.cpp 
+	g++ $(CXXFLAGS) -c src/Statistics.cpp -Iinclude -o build/Statistics.o
+
+	
 
 # -----------------------------
 

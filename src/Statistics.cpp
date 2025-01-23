@@ -40,7 +40,11 @@ void Statistics::MakeStats()
         }
     }
 }
-//------------------------------------------------- Surcharge d'opérateurs
+
+void Statistics::Fill(Flags flag)
+{
+  
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Statistics::Statistics() : stats()

@@ -6,8 +6,8 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 //------------------------------------------------------ Include personnel
-#include "./include/Grapher.h"
-#include "Parser.h"
+#include "../include/Grapher.h"
+#include "../include/Parser.h"
 
 //------------------------------------------------------------- Constantes
 
