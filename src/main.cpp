@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "../include/config.h"
+#include "../include/Parser.h"
 using namespace std;
 
 int main(int argc, char* argv[]) 
@@ -71,6 +72,12 @@ int main(int argc, char* argv[])
       flags.t = nombre;
       i++;
     }
+  }
+
+//Appel des stats et affichage du top 10 dans la console
+if (flags.g != "")
+  {
+    //Appel du grapher pour creation du fichier.dot
   }
 
   return 0;
