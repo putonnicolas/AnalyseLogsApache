@@ -50,7 +50,7 @@ void Statistics::Fill(Parser &parser, Flags &flags)
             {
                 delete line; // Libérer la mémoire avant de passer à la ligne suivante
                 continue;
-            }
+                        }
         }
 
         // Extraire le nom de fichier et mettre à jour la map
