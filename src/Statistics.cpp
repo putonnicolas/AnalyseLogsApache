@@ -24,27 +24,31 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Statistics::MakeStats()
-{ // Top 10 des fichiers les plus consultés (nombre de hits)
-    // parcourire ma map
-    for (int i = 0; i < 10; i++)
+{
+    for (int i = 0; i < 10 && !stats.empty(); i++) // S'arrêter si la map est vide
     {
         int max_prov = -1;
-        for (auto it = stats.begin(); it != stats.end(); it++)
+        auto max_it = stats.end(); // Itérateur pour stocker l'élément avec le max
+
+        // Parcourir la map pour trouver l'élément avec le maximum
+        for (auto it = stats.begin(); it != stats.end(); ++it)
         {
-            // calcul du max
             if (it->second > max_prov)
             {
                 max_prov = it->second;
+                max_it = it; // Garder l'itérateur vers cet élément
             }
-            cout << it->first << " (" << it->second << " hits)" << endl;
+        }
+
+        // Si un maximum a été trouvé, afficher et supprimer l'élément correspondant
+        if (max_it != stats.end())
+        {
+            cout << max_it->first << " (" << max_it->second << " hits)" << endl;
+            stats.erase(max_it); // Supprimer l'élément avec le max
         }
     }
 }
-
-void Statistics::Fill(Flags flag)
-{
-  
-}
+//------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 Statistics::Statistics() : stats()

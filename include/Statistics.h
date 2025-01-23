@@ -13,8 +13,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <iostream>
 #include <map>
-#include <../include/config.h>
-
+#include "../include/config.h"
 using namespace std;
 //------------------------------------------------------------- Constantes
 
@@ -47,7 +46,6 @@ public:
     // Contrat :
     //
     void MakeStats();
-
     // Mode d'emploi :
     //
     // Contrat :
