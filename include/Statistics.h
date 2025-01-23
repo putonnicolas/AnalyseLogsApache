@@ -14,6 +14,7 @@
 #include <iostream>
 #include <map>
 #include "../include/config.h"
+#include "../include/Parser.h"
 using namespace std;
 //------------------------------------------------------------- Constantes
 
@@ -50,7 +51,7 @@ public:
     //
     // Contrat :
     //
-    void Fill(Flags flag);
+    void Fill(Parser &parser, Flags &flags);
     // Mode d'emploi :
     //
     // Contrat :
