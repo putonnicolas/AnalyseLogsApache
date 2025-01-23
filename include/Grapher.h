@@ -12,21 +12,17 @@ using namespace std;
 #include "../include/config.h"
 
 
-// -------------------------------------------------------------------- Macros
-
-
-
 // -------------------------- Classe <Grapher> -----------------------------
 class Grapher
 {
 public:
     //----------------------------------------------------- Méthodes publiques
-    void Fill(Flags flags);
-
+    void Fill(Parser &parser, Flags &flags);
+    void MakeGraph(Flags &flags);
 
     //-------------------------------------------- Constructeurs - destructeur
     Grapher();
-    Grapher(Flags flags);
+    Grapher(Parser &parser, Flags &flags);
     virtual ~Grapher();
 
 protected:

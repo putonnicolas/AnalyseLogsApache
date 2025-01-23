@@ -43,7 +43,7 @@ public:
     //
     void openFile(const string& path);
 
-    unordered_map<string,string>* parse(); 
+    LineParsed* parse(); 
 
 
     //-------------------------------------------- Constructeurs - destructeur

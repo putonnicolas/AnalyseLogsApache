@@ -11,3 +11,4 @@ typedef struct Flags {
 
 // ----------------------------------------------------------------- Macros
 using GraphMap = unordered_map<string, unordered_map<string, int>>;
+using LineParsed = unordered_map<string, string>;
