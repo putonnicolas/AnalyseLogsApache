@@ -1,9 +1,12 @@
 /*************************************************************************
-                          Statistics  -  description
+                           Statistics  -  description
                              -------------------
-    début                : $22/01/2025$
-    copyright            : (C) $2025$ par $$
-    e-mail               : $eliott.frechard@insa-lyon.fr$
+    début                : $24/01/2025$
+    copyright            : (C) $2025$ par $GALLARD Yanis/FRECHARD Eliott/DIDIETR Alexandre/PUTON Nicolas$
+    e-mail               : $eliott.frechard@insa-lyon.fr
+                            yanis.gallard@insa-lyon.fr
+                            nicolas.puton@insa-lyon.fr
+                            alexandre.didier@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------

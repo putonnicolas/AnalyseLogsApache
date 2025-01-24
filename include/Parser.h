@@ -1,9 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Parser  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $24/01/2025$
+    copyright            : (C) $2025$ par $GALLARD Yanis/FRECHARD Eliott/DIDIETR Alexandre/PUTON Nicolas$
+    e-mail               : $eliott.frechard@insa-lyon.fr
+                            yanis.gallard@insa-lyon.fr
+                            nicolas.puton@insa-lyon.fr
+                            alexandre.didier@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
@@ -18,7 +21,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "../include/config.h"
-
 
 //------------------------------------------------------------- Constantes
 
@@ -36,8 +38,8 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    ifstream file;  
-    
+    ifstream file;
+
     //----------------------------------------------------------------- PUBLIC
 
 public:
@@ -45,26 +47,23 @@ public:
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
-    void openFile(const string& path);
+    void openFile(const string &path);
 
-    LineParsed* parse(); 
-
+    LineParsed *parse();
 
     //-------------------------------------------- Constructeurs - destructeur
 
     Parser();
     // Mode d'emploi :
-    //    
-    
+    //
+
     Parser(const string &path);
     // Mode d'emploi :
     //
 
-
     virtual ~Parser();
     // Mode d'emploi :
     //
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
