@@ -7,15 +7,6 @@ using namespace std;
 #include <algorithm>
 //------------------------------------------------------ Include personnel
 #include "../include/Grapher.h"
-#include "../include/Parser.h"
-
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------- Surcharge d'opérateurs
-Grapher &Grapher::operator=(const Grapher &unGrapher)
-{
-} //----- Fin de operator =
-
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -72,13 +63,14 @@ void Grapher::Fill(Parser &parser, Flags &flags)
     const string& file = (*line)["File"];
     const string& referer = (*line)["Referer"];
     graph[file][referer]++;
+    delete line;
   }
-}
+}  //----- Fin de Fill(Parser &parser, Flags &flags)
 
-void Grapher::MakeGraph(Flags &flags)
+void Grapher::MakeGraph(Flags &flags) const
 {
   // Ouvre / Créé le fichier
-  ofstream outputFile("../resources/Graphs/" + flags.g);
+  ofstream outputFile("resources/Graphs/" + flags.g);
   if (!outputFile.is_open())
   {
     cerr << "Erreur lors de l'ouverture du fichier en écriture" << endl;
@@ -101,23 +93,35 @@ void Grapher::MakeGraph(Flags &flags)
     index++;
   }
 
+
   // -------------------------------------------------------- Ecriture de la deuxième partie du .dot
   // On parcourt tous les indices de la liste des fichiers
   for (int index = 0; index < files.size(); index++)
   {
     // On prend le dictionnaire des referers du fichier à l'indice 'index'
-    for (const auto &referer : graph[files[index]])
+    for (const auto &referer : graph.at(files[index]))
     {
         // On cherche l'indice du referer
-        auto it = find(files.begin(), files.end(), referer.first);
-        if (it != files.end())
-        {
-            int refererIndex = distance(files.begin(), it);
-            outputFile << "node" << refererIndex << " -> node" << index << " [label=\"" << referer.second << "\"];" << endl;
-        }
+      for (const auto &referer : graph.at(files[index]))
+      {
+          // Debugging output
+          cout << "Recherche de referer: " << referer.first << endl;
+
+          auto it = find(files.begin(), files.end(), referer.first);
+          if (it != files.end())
+          {
+              int refererIndex = distance(files.begin(), it);
+              outputFile << "node" << refererIndex << " -> node" << index << " [label=\"" << referer.second << "\"];" << endl;
+          }
+          else
+          {
+              // Debugging output
+              cout << "Referer non trouvé: " << referer.first << endl;
+          }
+      }
     }
   }
 
   outputFile << "}" << endl;
   outputFile.close();
-}
+}  //----- Fin de MakeGraph(Flags &flags)

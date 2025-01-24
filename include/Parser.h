@@ -10,12 +10,16 @@
 #if !defined(PARSER_H)
 #define PARSER_H
 
-//--------------------------------------------------- Interfaces utilisées
+//-------------------------------------------------------- Include système
 #include <iostream>
 #include <fstream>
 #include <unordered_map>
-
 using namespace std;
+
+//------------------------------------------------------ Include personnel
+#include "../include/config.h"
+
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types

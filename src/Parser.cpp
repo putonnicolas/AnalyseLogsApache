@@ -19,7 +19,6 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "../include/Parser.h"
 #include "Parser.h"
-#include "config.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -52,10 +51,8 @@ LineParsed* Parser::parse() {
   string temp;
 
   if(!getline(file, temp, ' '))
-  {
-    cout << "Fichier vide" << endl;
     return nullptr;
-  }; 
+
   lineData->insert(make_pair("IP", temp));  
   
   getline(file, temp, ' ');
@@ -119,6 +116,9 @@ Parser::Parser()
 
 Parser::Parser(const string &path)
 {
+#ifdef MAP
+    cout << "Appel au constructeur de <Parser>" << endl;
+#endif
   openFile(path);
 }
 

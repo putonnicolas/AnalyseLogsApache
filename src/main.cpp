@@ -2,12 +2,15 @@
 #include <string>
 #include "../include/config.h"
 #include "../include/Parser.h"
+#include "../include/Grapher.h"
+#include "../include/Statistics.h"
 using namespace std;
 
 int main(int argc, char* argv[]) 
 {
   string nom_fichier_log;
   Flags flags;
+  Parser parser("temp.log");
   //Analyse de la ligne de commande
   for (int i = 1; i < argc; i++) 
   {
@@ -77,7 +80,7 @@ int main(int argc, char* argv[])
 //Appel des stats et affichage du top 10 dans la console
 if (flags.g != "")
   {
-    //Appel du grapher pour creation du fichier.dot
+    Grapher grapher(parser, flags);
   }
 
   return 0;
