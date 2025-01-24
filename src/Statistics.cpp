@@ -50,7 +50,7 @@ void Statistics::Fill(Parser &parser, Flags &flags)
             {
                 delete line; // Libérer la mémoire avant de passer à la ligne suivante
                 continue;
-                        }
+            }
         }
 
         // Extraire le nom de fichier et mettre à jour la map
@@ -61,8 +61,9 @@ void Statistics::Fill(Parser &parser, Flags &flags)
     }
 }
 void Statistics::MakeStats()
-{
-    for (int i = 0; i < 10 && !stats.empty(); i++) // S'arrêter si la map est vide
+{ // Top 10 des fichiers les plus consultés (nombre de hits)
+    // parcourire ma map
+    for (int i = 0; i < 10; i++)
     {
         int max_prov = -1;
         auto max_it = stats.end(); // Itérateur pour stocker l'élément avec le max
