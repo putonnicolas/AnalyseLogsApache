@@ -45,26 +45,15 @@ public:
     //-------------------------------------------- Constructeurs - destructeur
 
     Statistics();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : Constructeur par défaut
     void MakeStats();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : Affiche dans le terminal les 10 sites les plus visités
     void Fill(Parser &parser, Flags &flags);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : à l'aide du parser, on remplit la map stats pour pouvoir
+    // réaliser les statistiques
 
     virtual ~Statistics();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : Destructeur
 
     //------------------------------------------------------------------ PRIVE
 

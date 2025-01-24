@@ -27,9 +27,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Statistics::Fill(Parser &parser, Flags &flags)
+// Algorithme : Remplissage de la map à l'aide d'un objet parser et en fonction des flags
+// Sans oublier de libérer la mémoire à chaque fois qu'on a fini de traiter une ligne
 {
     LineParsed *line;
-
     // Lire les logs ligne par ligne
     while ((line = parser.parse()) != nullptr)
     {
@@ -64,7 +65,8 @@ void Statistics::Fill(Parser &parser, Flags &flags)
     }
 }
 void Statistics::MakeStats()
-{ // Top 10 des fichiers les plus consultés (nombre de hits)
+// Algorithme : Affichage des 10 fichiers les plus consultés
+{
     for (int i = 0; i < 10 && !stats.empty(); i++)
     {
         int max_prov = -1;
