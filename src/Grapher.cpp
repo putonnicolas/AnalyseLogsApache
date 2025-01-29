@@ -89,7 +89,7 @@ void Grapher::MakeGraph(Flags &flags) const
   {
     files.push_back(node.first);
     const string &file = node.first;
-    outputFile << "node" << index << " [label=\"/" << file << "\"];" << endl;
+    outputFile << "node" << index << " [label=" << file << "\"];" << endl;
     index++;
   }
 
@@ -107,7 +107,11 @@ void Grapher::MakeGraph(Flags &flags) const
           // Debugging output
           cout << "Recherche de referer: " << referer.first << endl;
 
-          auto it = find(files.begin(), files.end(), referer.first);
+          auto it = find_if(files.begin(), files.end(), [&referer](const string &file)
+          {
+            return referer.first.find(file) != string::npos;
+          });
+
           if (it != files.end())
           {
               int refererIndex = distance(files.begin(), it);
