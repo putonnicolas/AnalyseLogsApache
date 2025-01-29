@@ -34,6 +34,12 @@ void Statistics::Fill(Parser &parser, Flags &flags)
     // Lire les logs ligne par ligne
     while ((line = parser.parse()) != nullptr)
     {
+        // si status > 400 on ignore la ligne
+        if (stoi((*line)["Status"]) >= 400)
+        {
+            delete line; // Libérer la mémoire avant de passer à la ligne suivante
+            continue;
+        }
         // Vérifier les conditions de Flags
         // Si l'heure de la ligne est en dehors de la plage horaire
         if (flags.t != -1)
