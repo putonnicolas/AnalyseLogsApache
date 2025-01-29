@@ -6,6 +6,17 @@
 #include "../include/Statistics.h"
 using namespace std;
 
+bool isNumber(const string& str) {
+    for (char const &c : str) 
+    {
+        if (!isdigit(c)) 
+        {
+          return false;
+        }
+    }
+    return true;
+}
+
 int main(int argc, char* argv[]) 
 {
   string nomFichierLog;
@@ -75,14 +86,26 @@ int main(int argc, char* argv[])
           cerr << "Il manque un argument pour la commande -t" << endl;
           return 1;
         }
-        int nombre = atoi(argv[i+1]);
-        if (nombre < 0 || nombre >= 24)
+        //verification de la validité de l'argument
+        if (isNumber(argv[i+1]))
+        {
+          int nombre = atoi(argv[i+1]);
+          if (nombre >= 0 && nombre <24)
+          {
+            flags.t = nombre;
+            i++;  //prend en compte le fait qu'on a pris 2 arguments
+          }
+          else
+          {
+            cerr << "L'argument de la commande -t doit etre un nombre entre 0 et 23 compris." << endl;
+            return 1;
+          }
+        }
+        else
         {
           cerr << "L'argument de la commande -t doit etre un nombre entre 0 et 23 compris." << endl;
-          return 1; 
+          return 1;
         }
-        flags.t = nombre;
-        i++;
       }
       
       else
