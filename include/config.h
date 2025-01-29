@@ -11,6 +11,7 @@ typedef struct Flags
   string g = "";
   int t = -1;
   bool e = 0;
+  bool i = 0;
 } Flags;
 
 // ----------------------------------------------------------------- Macros

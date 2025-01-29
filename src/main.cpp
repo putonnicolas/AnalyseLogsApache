@@ -107,6 +107,9 @@ int main(int argc, char* argv[])
           return 1;
         }
       }
+
+      else if (string(argv[i]) == "-i")
+        flags.i = 1;
       
       else
       {
@@ -120,20 +123,32 @@ int main(int argc, char* argv[])
 
 
 
-//Appel des stats et affichage du top 10 dans la console
-Parser parser(nomFichierLog);
+  //Appel des stats et affichage du top 10 dans la console
+  Parser parser(nomFichierLog);
 
-if (flags.g != "")
+  if (flags.g != "")
   {
+    // ------------------------------------------------- Créer le .dot
     Grapher grapher(parser, flags);
+
+    // ------------------------------------------------- Créer l'image
+
+    if (flags.i == 1)
+    {
+      // Recherche de la présence du fichier
+      string graphname = flags.g.substr(0, flags.g.size() - 4);
+      ifstream infile("./resources/Graphs/" + graphname + ".dot");
+      if (infile.good())
+        system(("dot -Tpng -o ./resources/Graphs/" + graphname + ".png ./resources/Graphs/" + graphname + ".dot").c_str());
+    }
   }
 
-Statistics stats;
-stats.Fill(parser,flags);
-stats.MakeStats();
 
+  Statistics stats;
+  stats.Fill(parser,flags);
+  stats.MakeStats();
 
   //debug
-  cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", nom de fichier = "<< nomFichierLog <<endl;
+  // cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", i = "<<flags.i<<", nom de fichier = "<< nomFichierLog <<endl;
   return 0;
-}
+  }
