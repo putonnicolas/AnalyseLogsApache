@@ -1,10 +1,9 @@
 #include <iostream>
 #include <string>
 #include "../include/config.h"
-/*
 #include "../include/Parser.h"
 #include "../include/Grapher.h"
-#include "../include/Statistics.h"*/
+#include "../include/Statistics.h"
 using namespace std;
 
 int main(int argc, char* argv[]) 
@@ -99,11 +98,18 @@ int main(int argc, char* argv[])
 
 
 //Appel des stats et affichage du top 10 dans la console
+Parser parser(nomFichierLog);
+
 if (flags.g != "")
   {
     Grapher grapher(parser, flags);
   }
-Parser parser(nomFichierLog);
+
+Statistics stats;
+stats.Fill(parser,flags);
+stats.MakeStats();
+
+
   //debug
   cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", nom de fichier = "<< nomFichierLog <<endl;
   return 0;
