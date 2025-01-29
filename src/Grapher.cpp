@@ -127,7 +127,7 @@ void Grapher::MakeGraph(Flags &flags) const
       if (it != files.end())
       {
           int refererIndex = distance(files.begin(), it);
-          outputFile << "node" << refererIndex << " -> node" << index << " [label=\" " << referer.second << "\"];" << endl;
+          outputFile << "node" << refererIndex << " -> node" << index << " [label=\"" << referer.second << "\"];" << endl;
       }
     }
   }
