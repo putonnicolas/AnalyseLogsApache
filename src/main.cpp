@@ -1,16 +1,16 @@
 #include <iostream>
 #include <string>
 #include "../include/config.h"
+/*
 #include "../include/Parser.h"
 #include "../include/Grapher.h"
-#include "../include/Statistics.h"
+#include "../include/Statistics.h"*/
 using namespace std;
 
 int main(int argc, char* argv[]) 
 {
-  string nom_fichier_log;
+  string nomFichierLog;
   Flags flags;
-  Parser parser("temp.log");
   //Analyse de la ligne de commande
   for (int i = 1; i < argc; i++) 
   {
@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
       }
       else
       {
-        nom_fichier_log = nom_fichier;
+        nomFichierLog = nom_fichier;
       }
     }
 
@@ -43,41 +43,49 @@ int main(int argc, char* argv[])
       {
         flags.e = 1;
       }
-      else if (i < argc-2)
+      //si l'argument est -g, on vérifie que le fichier donc le texte qui suit est bien un .dot
+      else if (string(argv[i]) == "-g")
       {
-        //si l'argument est -g, on vérifie que le fichier donc le texte qui suit est bien un .dot
-        if (string(argv[i]) == "-g")
+        if (i == argc-2)
         {
-          string nom_fichier = argv[i+1];
-
-          //Compare les 4 derniers caractères de la chaine de caractères (.dot) (verifie d'abord si il y en a 4)
-          if (nom_fichier.size() < 4)
-          {
-            cerr << "Le fichier doit etre un fichier .dot" << endl;
-            return 1;
-          }
-          if (nom_fichier.substr(nom_fichier.size()-4) != ".dot")
-          {
-            cerr << "Le fichier doit etre un fichier .dot" << endl;
-            return 1;
-          }
-          flags.g = argv[i+1];
-          i++;
+          cerr << "Il manque un argument pour la commande -g" << endl;
+          return 1;
         }
+        string nom_fichier = argv[i+1];
 
-        //si l'argument est -t, on vérifie que l'heure (onc le texte qui suit) est bien un nombre entre 0 et 23
-        else if (string(argv[i]) == "-t")
+        //Compare les 4 derniers caractères de la chaine de caractères (.dot) (verifie d'abord si il y en a 4)
+        if (nom_fichier.size() < 4)
         {
-          int nombre = atoi(argv[i+1]);
-          if (nombre < 0 || nombre >= 24)
-          {
-            cerr << "L'argument de la commande -t doit etre un nombre entre 0 et 23 compris." << endl;
-            return 1; 
-          }
-          flags.t = nombre;
-          i++;
+          cerr << "L'argument de la commande -g doit etre un fichier .dot" << endl;
+          return 1;
         }
+        if (nom_fichier.substr(nom_fichier.size()-4) != ".dot")
+        {
+          cerr << "L'argument de la commande -g doit etre un fichier .dot" << endl;
+          return 1;
+        }
+        flags.g = argv[i+1];
+        i++;
       }
+
+      //si l'argument est -t, on vérifie que l'heure (donc le texte qui suit) est bien un nombre entre 0 et 23
+      else if (string(argv[i]) == "-t")
+      {
+        if (i == argc-2)
+        {
+          cerr << "Il manque un argument pour la commande -t" << endl;
+          return 1;
+        }
+        int nombre = atoi(argv[i+1]);
+        if (nombre < 0 || nombre >= 24)
+        {
+          cerr << "L'argument de la commande -t doit etre un nombre entre 0 et 23 compris." << endl;
+          return 1; 
+        }
+        flags.t = nombre;
+        i++;
+      }
+      
       else
       {
         cerr << "La commande entree est incorrect" << endl;
@@ -95,8 +103,8 @@ if (flags.g != "")
   {
     Grapher grapher(parser, flags);
   }
-
+Parser parser(nomFichierLog);
   //debug
-  cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", nom de fichier = "<< nom_fichier_log <<endl;
+  cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", nom de fichier = "<< nomFichierLog <<endl;
   return 0;
 }
