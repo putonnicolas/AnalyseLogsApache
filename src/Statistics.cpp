@@ -47,7 +47,7 @@ void Statistics::Fill(Parser &parser, Flags &flags)
         }
 
         // Ignorer certains types de fichiers si le flag e est désactivé
-        if (flags.e == 0)
+        if (flags.e == 1)
         {
             const string &ext = (*line)["Ext"];
             if (ext == "png" || ext == "jpg" || ext == "css" || ext == "js")
