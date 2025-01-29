@@ -50,12 +50,20 @@ void Grapher::Fill(Parser &parser, Flags &flags)
   // On parcourt le fichier à l'aide de parse
   while ((line = parser.parse()) != nullptr)
   {
+    if (stoi((*line)["Status"]) >= 400)
+    {
+      delete line;
+      continue;
+    }
     // Si l'heure de la ligne est en dehors de la plage horaire
     if (flags.t != -1)
     {
       int line_hour = stoi((*line)["Hour"]);
       if (line_hour < flags.t || line_hour >= (flags.t + 1))
+      {
+        delete line;
         continue;
+      }
     }
 
     // Si le type de fichier est CSS, js, jpg ou png
@@ -63,7 +71,10 @@ void Grapher::Fill(Parser &parser, Flags &flags)
     {
       const string &ext = (*line)["Ext"];
       if (ext == "png" || ext == "jpg" || ext == "css" || ext == "js")
+      {
+        delete line;
         continue;
+      }
     }
 
     // Si les conditions précédentes n'ont pas été validées, alors on ajoute la ligne au graph
@@ -96,7 +107,7 @@ void Grapher::MakeGraph(Flags &flags) const
   {
     files.push_back(node.first);
     const string &file = node.first;
-    outputFile << "node" << index << " [label=" << file << "\"];" << endl;
+    outputFile << "node" << index << " [label=\"" << file << "\"];" << endl;
     index++;
   }
 
@@ -108,26 +119,15 @@ void Grapher::MakeGraph(Flags &flags) const
     for (const auto &referer : graph.at(files[index]))
     {
       // On cherche l'indice du referer
-      for (const auto &referer : graph.at(files[index]))
+      auto it = find_if(files.begin(), files.end(), [&referer](const string &file)
       {
-        // Debugging output
-        cout << "Recherche de referer: " << referer.first << endl;
+        return referer.first.find(file) != string::npos;
+      });
 
-          auto it = find_if(files.begin(), files.end(), [&referer](const string &file)
-          {
-            return referer.first.find(file) != string::npos;
-          });
-
-          if (it != files.end())
-          {
-              int refererIndex = distance(files.begin(), it);
-              outputFile << "node" << refererIndex << " -> node" << index << " [label=\"" << referer.second << "\"];" << endl;
-          }
-          else
-          {
-              // Debugging output
-              cout << "Referer non trouvé: " << referer.first << endl;
-          }
+      if (it != files.end())
+      {
+          int refererIndex = distance(files.begin(), it);
+          outputFile << "node" << refererIndex << " -> node" << index << " [label=\" " << referer.second << "\"];" << endl;
       }
     }
   }
