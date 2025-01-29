@@ -53,6 +53,7 @@ int main(int argc, char* argv[])
       {
         flags.e = 1;
       }
+
       //si l'argument est -g, on vérifie que le fichier donc le texte qui suit est bien un .dot
       else if (string(argv[i]) == "-g")
       {
@@ -108,6 +109,7 @@ int main(int argc, char* argv[])
         }
       }
 
+      //si l'argument est -i 
       else if (string(argv[i]) == "-i")
         flags.i = 1;
       
@@ -126,10 +128,12 @@ int main(int argc, char* argv[])
   //Appel des stats et affichage du top 10 dans la console
   Parser parser(nomFichierLog);
 
+  
   if (flags.g != "")
   {
     // ------------------------------------------------- Créer le .dot
     Grapher grapher(parser, flags);
+    cout << "Dot-file " << flags.g << " created at ./Ressources/Graphs/"<< flags.g << endl;
 
     // ------------------------------------------------- Créer l'image
 
@@ -143,14 +147,20 @@ int main(int argc, char* argv[])
     }
   }
 
+  if (flags.t != -1)
+  {
+    cout << "Warning: only hits between " << flags.t << ":00 and " << flags.t+1<< ":00 have been taken into account " << endl;
+  }
 
-  Statistics stats;
-  stats.Fill(parser,flags);
-  stats.MakeStats();
-
+  //debuggage
   #ifdef MAP
   cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", i = "<<flags.i<<", nom de fichier = "<< nomFichierLog <<endl;
   #endif
+
+  //création des stats
+  Statistics stats;
+  stats.Fill(parser,flags);
+  stats.MakeStats();
   
   return 0;
   }
