@@ -56,7 +56,7 @@ void Statistics::Fill(Parser &parser, Flags &flags)
         if (flags.e == 1)
         {
             const string &ext = (*line)["Ext"];
-            if (ext == "png" || ext == "jpg" || ext == "css" || ext == "js")
+            if (ext == "png" || ext == "jpg" || ext == "css" || ext == "js" || ext == "ico" || ext == "gif" || ext == "jpeg" || ext == "svg")
             {
                 delete line; // Libérer la mémoire avant de passer à la ligne suivante
                 continue;
