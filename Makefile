@@ -1,3 +1,5 @@
+CXXFLAGS += -std=c++11
+
 ifdef MAP
 CXXFLAGS += -DMAP
 endif
@@ -18,8 +20,6 @@ build/Grapher.o: src/Grapher.cpp | build
 
 build/Statistics.o: src/Statistics.cpp | build
 	g++ $(CXXFLAGS) -c src/Statistics.cpp -Iinclude -o build/Statistics.o
-
-	
 
 # -----------------------------
 

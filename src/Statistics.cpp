@@ -1,12 +1,15 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Statistics  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $24/01/2025$
+    copyright            : (C) $2025$ par $GALLARD Yanis/FRECHARD Eliott/DIDIETR Alexandre/PUTON Nicolas$
+    e-mail               : $eliott.frechard@insa-lyon.fr
+                            yanis.gallard@insa-lyon.fr
+                            nicolas.puton@insa-lyon.fr
+                            alexandre.didier@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Statistics> (fichier Statistics.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -24,9 +27,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Statistics::Fill(Parser &parser, Flags &flags)
+// Algorithme : Remplissage de la map à l'aide d'un objet parser et en fonction des flags
+// Sans oublier de libérer la mémoire à chaque fois qu'on a fini de traiter une ligne
 {
     LineParsed *line;
-
     // Lire les logs ligne par ligne
     while ((line = parser.parse()) != nullptr)
     {
@@ -43,14 +47,14 @@ void Statistics::Fill(Parser &parser, Flags &flags)
         }
 
         // Ignorer certains types de fichiers si le flag e est désactivé
-        if (flags.e == 0)
+        if (flags.e == 1)
         {
             const string &ext = (*line)["Ext"];
             if (ext == "png" || ext == "jpg" || ext == "css" || ext == "js")
             {
                 delete line; // Libérer la mémoire avant de passer à la ligne suivante
                 continue;
-                        }
+            }
         }
 
         // Extraire le nom de fichier et mettre à jour la map
@@ -61,8 +65,9 @@ void Statistics::Fill(Parser &parser, Flags &flags)
     }
 }
 void Statistics::MakeStats()
+// Algorithme : Affichage des 10 fichiers les plus consultés
 {
-    for (int i = 0; i < 10 && !stats.empty(); i++) // S'arrêter si la map est vide
+    for (int i = 0; i < 10 && !stats.empty(); i++)
     {
         int max_prov = -1;
         auto max_it = stats.end(); // Itérateur pour stocker l'élément avec le max
@@ -101,7 +106,7 @@ Statistics::~Statistics()
 #ifdef MAP
     cout << "Appel au destructeur de <Statistics>" << endl;
 #endif
-} //----- Fin de ~Xxx
+} //----- Fin de ~Statistics
 
 //------------------------------------------------------------------ PRIVE
 

@@ -1,9 +1,12 @@
 /*************************************************************************
-                          Statistics  -  description
+                           Statistics  -  description
                              -------------------
-    début                : $22/01/2025$
-    copyright            : (C) $2025$ par $$
-    e-mail               : $eliott.frechard@insa-lyon.fr$
+    début                : $24/01/2025$
+    copyright            : (C) $2025$ par $GALLARD Yanis/FRECHARD Eliott/DIDIETR Alexandre/PUTON Nicolas$
+    e-mail               : $eliott.frechard@insa-lyon.fr
+                            yanis.gallard@insa-lyon.fr
+                            nicolas.puton@insa-lyon.fr
+                            alexandre.didier@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
@@ -42,26 +45,15 @@ public:
     //-------------------------------------------- Constructeurs - destructeur
 
     Statistics();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : Constructeur par défaut
     void MakeStats();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : Affiche dans le terminal les 10 sites les plus visités
     void Fill(Parser &parser, Flags &flags);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : à l'aide du parser, on remplit la map stats pour pouvoir
+    // réaliser les statistiques
 
     virtual ~Statistics();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : Destructeur
 
     //------------------------------------------------------------------ PRIVE
 
