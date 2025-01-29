@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
       string nom_fichier = argv[i]; //on vérifie la taille du fichier puis on vérifie que le fichier est bien un .log
       if (nom_fichier.size() < 4)
       {
-        cerr << "Le fichier de log doit etre un fichier .log" << endl;
+        cerr << "Fichier invalide" << endl;
         return 1;
       }
       else if (nom_fichier.substr(nom_fichier.size()-4) != ".log")
@@ -134,6 +134,8 @@ stats.MakeStats();
 
 
   //debug
+  #ifdef MAP
   cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", nom de fichier = "<< nomFichierLog <<endl;
+  #endif
   return 0;
 }
