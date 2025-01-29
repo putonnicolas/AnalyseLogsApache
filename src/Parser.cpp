@@ -44,7 +44,7 @@ void Parser::openFile(const string &path)
 
   if (!file.is_open())
   {
-    cout << "Erreur : Impossible d'ouvrir le fichier " << path << endl;
+    cerr << "Erreur : Impossible d'ouvrir le fichier " << path << endl;
   }
 }
 
