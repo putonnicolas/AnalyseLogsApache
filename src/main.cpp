@@ -148,7 +148,9 @@ int main(int argc, char* argv[])
   stats.Fill(parser,flags);
   stats.MakeStats();
 
-  //debug
-  // cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", i = "<<flags.i<<", nom de fichier = "<< nomFichierLog <<endl;
+  #ifdef MAP
+  cout<< "g = "<<flags.g<<", e = "<<flags.e<<", t = "<<flags.t<<", i = "<<flags.i<<", nom de fichier = "<< nomFichierLog <<endl;
+  #endif
+  
   return 0;
   }
