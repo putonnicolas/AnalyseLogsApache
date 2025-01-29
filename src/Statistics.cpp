@@ -91,7 +91,10 @@ void Statistics::MakeStats()
         // Si un maximum a été trouvé, afficher et supprimer l'élément correspondant
         if (max_it != stats.end())
         {
-            cout << max_it->first << " (" << max_it->second << " hits)" << endl;
+            if (max_it->second > 1)
+                cout << max_it->first << " (" << max_it->second << " hits)" << endl;
+            else
+                cout << max_it->first << " (" << max_it->second << " hit)" << endl;
             stats.erase(max_it); // Supprimer l'élément avec le max
         }
     }
