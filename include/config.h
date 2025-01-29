@@ -6,7 +6,8 @@ using namespace std;
 #include <unordered_map>
 
 // ------------------------------------------------------------- Structures
-typedef struct {
+typedef struct Flags
+{
   string g = "";
   int t = -1;
   bool e = 0;
