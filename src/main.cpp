@@ -133,7 +133,7 @@ int main(int argc, char* argv[])
   {
     // ------------------------------------------------- Créer le .dot
     Grapher grapher(parser, flags);
-    cout << "Dot-file " << flags.g << " created at ./Ressources/Graphs/"<< flags.g << endl;
+    cout << "Dot-file " << flags.g << " created at ./"<< flags.g << endl;
 
     // ------------------------------------------------- Créer l'image
 
@@ -141,9 +141,9 @@ int main(int argc, char* argv[])
     {
       // Recherche de la présence du fichier
       string graphname = flags.g.substr(0, flags.g.size() - 4);
-      ifstream infile("./resources/Graphs/" + graphname + ".dot");
+      ifstream infile("./" + graphname + ".dot");
       if (infile.good())
-        system(("dot -Tpng -o ./resources/Graphs/" + graphname + ".png ./resources/Graphs/" + graphname + ".dot").c_str());
+        system(("dot -Tpng -o ./" + graphname + ".png ./" + graphname + ".dot").c_str());
     }
   }
 

@@ -88,7 +88,7 @@ void Grapher::Fill(Parser &parser, Flags &flags)
 void Grapher::MakeGraph(Flags &flags) const
 {
   // Ouvre / Créé le fichier
-  ofstream outputFile("resources/Graphs/" + flags.g);
+  ofstream outputFile(flags.g);
   if (!outputFile.is_open())
   {
     cerr << "Erreur lors de l'ouverture du fichier en écriture" << endl;
