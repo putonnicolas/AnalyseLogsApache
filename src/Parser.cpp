@@ -57,7 +57,10 @@ LineParsed *Parser::parse()
   string temp;
 
   if (!getline(file, temp, ' '))
+  {
+    delete lineData;
     return nullptr;
+  }
 
   lineData->insert(make_pair("IP", temp));
 
